@@ -1,0 +1,61 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<section class="admin-section">
+    <h2>Edit Book</h2>
+
+    <form action="{{ url_for('edit_book', book_id=book.id) }}"
+          method="POST">
+
+        <label for="title">Book Title:</label>
+        <input type="text" id="title" name="title"
+               value="{{ book.title }}" required>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author"
+               value="{{ book.author }}" required>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <option value="Technology"
+                {% if book.category == "Technology" %}selected{% endif %}>
+                Technology
+            </option>
+            <option value="Science"
+                {% if book.category == "Science" %}selected{% endif %}>
+                Science
+            </option>
+            <option value="Fiction"
+                {% if book.category == "Fiction" %}selected{% endif %}>
+                Fiction
+            </option>
+            <option value="Education"
+                {% if book.category == "Education" %}selected{% endif %}>
+                Education
+            </option>
+        </select>
+
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" name="isbn"
+               value="{{ book.isbn or '' }}">
+        
+<label for="status">Book Status:</label>
+<select id="status" name="status" required>
+    <option value="Available"
+        {% if book.status == "Available" %}selected{% endif %}>
+        Available
+    </option>
+    <option value="Borrowed"
+        {% if book.status == "Borrowed" %}selected{% endif %}>
+        Borrowed
+    </option>
+</select>
+
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <p><a href="{{ url_for('admin') }}">Back to Admin</a></p>
+</section>
+{% endblock %}

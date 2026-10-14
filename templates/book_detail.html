@@ -1,0 +1,59 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="book-details">
+    <h2>{{ book.title }}</h2>
+
+    <div class="detail-card">
+        <div class="detail-cover">📚</div>
+
+        <p><strong>Book ID:</strong> {{ book.id }}</p>
+
+        <p><strong>Title:</strong> {{ book.title }}</p>
+
+        <p><strong>Author:</strong> {{ book.author }}</p>
+
+        <p><strong>Category:</strong> {{ book.category }}</p>
+        
+
+        <p>
+            <strong>Status:</strong>
+            {% if book.status == "Available" %}
+                <span class="status-available">Available</span>
+            {% else %}
+                <span class="status-borrowed">Borrowed</span>
+            {% endif %}
+        </p>
+
+        
+        <p><strong>ISBN:</strong> {{ book.isbn or "Not provided" }}</p>
+
+        
+       
+        {% if book.status == "Available" %}
+            <form action="{{ url_for('borrow_book', book_id=book.id) }}"
+                method="POST">
+                <button type="submit">Borrow Book</button>
+            </form>
+        {% else %}
+            <p class="status-borrowed">
+                This book is currently borrowed.
+            </p>
+
+            <form action="{{ url_for('return_book', book_id=book.id) }}"
+                method="POST">
+                <button type="submit">Return Book</button>
+            </form>
+        {% endif %}
+
+
+
+
+        
+        <a href="/" class="details-button">Back to Library</a>
+    </div>
+</section>
+
+{% endblock %}

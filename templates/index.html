@@ -1,0 +1,104 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="welcome">
+    <h2>Explore Our Digital Library</h2>
+    <p>Find your favourite books in one place.</p>
+</section>
+
+<section class="search-section">
+    
+<form action="/" method="GET">
+    <input
+        type="text"
+        name="q"
+        placeholder="Search by book title or author..."
+        value="{{ request.args.get('q', '') }}"
+    >
+
+    <label for="sort">Sort by:</label>
+
+    <select name="sort" id="sort">
+        <option value="title"
+            {% if sort_by == "title" %}selected{% endif %}>
+            Book Title
+        </option>
+
+        <option value="author"
+            {% if sort_by == "author" %}selected{% endif %}>
+            Author Name
+        </option>
+    </select>
+
+    <input
+        type="hidden"
+        name="category"
+        value="{{ request.args.get('category', '') }}"
+    >
+
+    <button type="submit">Search / Sort</button>
+</form>
+
+</section>
+
+<section class="categories">
+    <h3>Browse Categories</h3>
+
+    <div class="category-list">
+        <a href="/">All Books</a>
+        <a href="/?category=Technology">Technology</a>
+        <a href="/?category=Science">Science</a>
+        <a href="/?category=Fiction">Fiction</a>
+        <a href="/?category=Education">Education</a>
+    </div>
+</section>
+
+<section class="book-section">
+    <h3>Available Books</h3>
+
+    <div class="book-grid">
+        {% for book in books %}
+        <article class="book-card">
+
+            <div class="book-cover">
+    {% if book.category == "Technology" %}
+        <img src="{{ url_for('static', filename='images/python.jpg') }}"
+             alt="Python book cover">
+    {% elif book.category == "Science" %}
+        <img src="{{ url_for('static', filename='images/science.jpg') }}"
+             alt="Science book cover">
+    {% elif book.category == "Fiction" %}
+        <img src="{{ url_for('static', filename='images/fiction.jpg') }}"
+             alt="Fiction book cover">
+    {% else %}
+        <span>📚</span>
+    {% endif %}
+    </div>
+
+            <h4>{{ book.title }}</h4>
+            <p>Author: {{ book.author }}</p>
+            <p>Category: {{ book.category }}</p>
+            <p>
+                <strong>Status:</strong>
+                {% if book.status == "Available" %}
+                    <span class="status-available">Available</span>
+                {% else %}
+                    <span class="status-borrowed">Borrowed</span>
+                {% endif %}
+            </p>
+
+
+            <a href="/book/{{ book.id }}" class="details-button">
+                View Details
+            </a>
+
+        </article>
+        {% else %}
+        <p>No books found. Try another search.</p>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

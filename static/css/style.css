@@ -1,0 +1,356 @@
+
+/* General page styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+    color: #243047;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #173b67, #2878a5);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+header p {
+    margin-bottom: 0;
+}
+
+/* Navigation */
+nav {
+    background-color: #102c4c;
+    padding: 14px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 18px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #a9e4ff;
+}
+
+/* Main content */
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.welcome {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.welcome h2 {
+    color: #173b67;
+    font-size: 28px;
+}
+
+/* Search bar */
+.search-section form {
+    display: flex;
+    gap: 10px;
+    max-width: 650px;
+    margin: 25px auto;
+}
+
+.search-section input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button,
+.details-button {
+    background-color: #1769aa;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover,
+.details-button:hover {
+    background-color: #104d80;
+}
+
+/* Category filters */
+.categories {
+    margin: 35px 0;
+}
+
+.categories h3,
+.book-section h3 {
+    color: #173b67;
+}
+
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.category-list a {
+    background-color: white;
+    color: #1769aa;
+    text-decoration: none;
+    border: 1px solid #cbd5e1;
+    border-radius: 20px;
+    padding: 8px 17px;
+}
+
+.category-list a:hover {
+    background-color: #1769aa;
+    color: white;
+}
+
+/* Book cards */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    margin-top: 20px;
+}
+
+.book-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 14px rgba(25, 45, 75, 0.08);
+    transition: transform 0.2s;
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+}
+
+.book-card h4 {
+    color: #173b67;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.book-cover {
+    background: linear-gradient(135deg, #dcecff, #b7d8f4);
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.details-button {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #102c4c;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    margin-top: 50px;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 23px;
+    }
+
+    nav a {
+        margin: 0 8px;
+    }
+
+    .search-section form {
+        flex-direction: column;
+    }
+}
+
+/* Book details page */
+.book-details {
+    max-width: 700px;
+    margin: 30px auto;
+}
+
+.book-details h2 {
+    color: #173b67;
+}
+
+.detail-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(25, 45, 75, 0.08);
+}
+
+.detail-cover {
+    background: linear-gradient(135deg, #dcecff, #b7d8f4);
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Admin page */
+.admin-page {
+    max-width: 750px;
+    margin: 30px auto;
+}
+
+.admin-page h2 {
+    color: #173b67;
+}
+
+.admin-form {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(25, 45, 75, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0 35px;
+}
+
+.admin-form input,
+.admin-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.admin-form label {
+    font-weight: bold;
+    color: #243047;
+}
+
+.admin-book {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 12px 0;
+}
+
+.delete-button {
+    background-color: #c0392b;
+}
+
+.delete-button:hover {
+    background-color: #922b21;
+}
+
+@media (max-width: 600px) {
+    .admin-book {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+.book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+
+.flash-messages {
+    margin: 15px 0;
+}
+
+.flash-message {
+    background-color: #e6f7e9;
+    color: #216e39;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #b7e4c7;
+    font-weight: bold;
+}
+
+
+.dashboard {
+    margin: 25px 0;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-top: 15px;
+}
+
+.dashboard-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-card h4 {
+    margin: 0 0 12px;
+    color: #475569;
+}
+
+.dashboard-card p {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.status-available {
+    color: #16803c;
+    background-color: #e6f7e9;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.status-borrowed {
+    color: #b42318;
+    background-color: #fee4e2;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+
