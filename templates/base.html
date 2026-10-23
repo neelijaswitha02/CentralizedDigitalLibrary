@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,23 +16,23 @@
     <nav>
         <a href="/">Home</a>
         <a href="/admin">Admin</a>
+        <a href="{{ url_for('borrowing_records') }}">Borrowing Records</a>
     </nav>
 
     <main>
-        
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <div class="flash-messages">
-            {% for message in messages %}
-                <p class="flash-message">{{ message }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
-{% endwith %}
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <p class="flash-message">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
 
         {% block content %}{% endblock %}
     </main>
-    
 
     <footer>
         <p>Built with Python and Flask</p>
