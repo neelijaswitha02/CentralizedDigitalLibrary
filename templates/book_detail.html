@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 
 {% block content %}
@@ -10,13 +9,9 @@
         <div class="detail-cover">📚</div>
 
         <p><strong>Book ID:</strong> {{ book.id }}</p>
-
         <p><strong>Title:</strong> {{ book.title }}</p>
-
         <p><strong>Author:</strong> {{ book.author }}</p>
-
         <p><strong>Category:</strong> {{ book.category }}</p>
-        
 
         <p>
             <strong>Status:</strong>
@@ -27,31 +22,72 @@
             {% endif %}
         </p>
 
-        
         <p><strong>ISBN:</strong> {{ book.isbn or "Not provided" }}</p>
 
-        
-       
         {% if book.status == "Available" %}
+
+            <h3>Borrow This Book</h3>
+
             <form action="{{ url_for('borrow_book', book_id=book.id) }}"
-                method="POST">
+                  method="POST">
+
+                <label for="student_name">Student Name:</label>
+                <input
+                    type="text"
+                    id="student_name"
+                    name="student_name"
+                    placeholder="Enter student name"
+                    required
+                >
+
+                <br><br>
+
+                <label for="roll_number">Roll Number:</label>
+                <input
+                    type="text"
+                    id="roll_number"
+                    name="roll_number"
+                    placeholder="Enter roll number"
+                    required
+                >
+
+                <br><br>
+
                 <button type="submit">Borrow Book</button>
             </form>
+
         {% else %}
+
+            <h3>Borrowing Details</h3>
+
+            {% if borrowing %}
+                <p>
+                    <strong>Student Name:</strong>
+                    {{ borrowing.student_name }}
+                </p>
+
+                <p>
+                    <strong>Roll Number:</strong>
+                    {{ borrowing.roll_number }}
+                </p>
+
+                <p>
+                    <strong>Borrowed On:</strong>
+                    {{ borrowing.borrowed_on }}
+                </p>
+            {% endif %}
+
             <p class="status-borrowed">
                 This book is currently borrowed.
             </p>
 
             <form action="{{ url_for('return_book', book_id=book.id) }}"
-                method="POST">
+                  method="POST">
                 <button type="submit">Return Book</button>
             </form>
+
         {% endif %}
 
-
-
-
-        
         <a href="/" class="details-button">Back to Library</a>
     </div>
 </section>
