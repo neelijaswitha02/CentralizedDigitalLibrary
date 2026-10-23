@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="book-details">
+    <h2>Library Borrowing Records</h2>
+
+    <p>View books borrowed by students and their roll numbers.</p>
+
+    <div class="detail-card">
+        {% if borrowings %}
+
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="padding: 12px; text-align: left;">Book Name</th>
+                        <th style="padding: 12px; text-align: left;">Author</th>
+                        <th style="padding: 12px; text-align: left;">Student Name</th>
+                        <th style="padding: 12px; text-align: left;">Roll Number</th>
+                        <th style="padding: 12px; text-align: left;">Borrowed On</th>
+                        <th style="padding: 12px; text-align: left;">Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for record in borrowings %}
+                    <tr>
+                        <td style="padding: 12px;">{{ record.book_title }}</td>
+                        <td style="padding: 12px;">{{ record.book_author }}</td>
+                        <td style="padding: 12px;">{{ record.student_name }}</td>
+                        <td style="padding: 12px;">{{ record.roll_number }}</td>
+                        <td style="padding: 12px;">{{ record.borrowed_on }}</td>
+                        <td style="padding: 12px;">
+                            {% if record.returned_on %}
+                                <span class="status-available">Returned</span>
+                            {% else %}
+                                <span class="status-borrowed">Borrowed</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% else %}
+            <p>No borrowing records found yet.</p>
+            <p>Borrow a book to see the student's details here.</p>
+        {% endif %}
+
+        <br>
+        <a href="/" class="details-button">Back to Library</a>
+    </div>
+</section>
+
+{% endblock %}
